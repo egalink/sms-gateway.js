@@ -1,17 +1,17 @@
 {
-    "name": "sms-gateway-me",
+    "name": "sms-gateway.js",
     "version": "1.0.0",
     "description": "A library to interact with SMS Gateway using their API v4.0",
     "author": "Jakim Hernández <egalink@gmail.com>",
-    "homepage": "https://github.com/egalink/sms-gateway-me#readme",
+    "homepage": "https://github.com/egalink/sms-gateway.js#readme",
     "license": "MIT",
     "main": "lib/index.js",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/egalink/sms-gateway-me.git"
+        "url": "git+https://github.com/egalink/sms-gateway.js.git"
     },
     "bugs": {
-        "url": "https://github.com/egalink/sms-gateway-me/issues"
+        "url": "https://github.com/egalink/sms-gateway.js/issues"
     },
     "scripts": {
         "lint": "./node_modules/.bin/eslint src",
