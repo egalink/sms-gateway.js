@@ -1,0 +1,35 @@
+{
+    "name": "sms-gateway-me",
+    "version": "1.0.0",
+    "description": "A library to interact with SMS Gateway using their API v4.0",
+    "author": "Jakim Hernández <egalink@gmail.com>",
+    "homepage": "https://github.com/egalink/sms-gateway-me#readme",
+    "license": "MIT",
+    "main": "lib/index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/egalink/sms-gateway-me.git"
+    },
+    "bugs": {
+        "url": "https://github.com/egalink/sms-gateway-me/issues"
+    },
+    "scripts": {
+        "lint": "./node_modules/.bin/eslint src",
+        "test": "echo \"No test specified yet\" && exit 0",
+        "prebuild": "npm install",
+        "build": "rm -rf lib/* && ./node_modules/.bin/babel --presets es2015 -d lib/ src/",
+        "preversion": "npm test && npm run lint",
+        "version": "npm run build && git add -A -f ./lib",
+        "postversion": "git push && git push --tags"
+    },
+    "dependencies": {
+        "npm": "^6.4.1",
+        "request": "^2.88.0",
+        "request-promise": "^4.2.2"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.14.0",
+        "babel-preset-es2015": "^6.14.0",
+        "eslint": "^3.4.0"
+    }
+}
