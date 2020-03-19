@@ -1,16 +1,15 @@
 'use strict'
 
-module.exports = (key) => {
+module.exports = token => {
 
-    let options = {
-        host: 'https://smsgateway.me/api/v4',
-        apiToken: key,
+    const options = {
+        api: 'https://smsgateway.me/api/v4',
+        key: token,
     }
 
-    let clients = {
-        deviceApi: require('./deviceApi') (options),
-        messageApi: require('./messageApi') (options),
-    }
 
-    return clients
+    return {
+        devices: require('./sms-gateway-api/devices') (options),
+        messages: require('./sms-gateway-api/messages') (options),
+    }
 }

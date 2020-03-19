@@ -1,23 +1,14 @@
 'use strict'
 
-// https://github.com/request/request-promise:
-let rp = require('request-promise-native')
+const superagent = require('superagent')
 
-module.exports = ({ apiToken, host }) => {
+module.exports = ({ api, key }) => {
 
-    let endpoint = '/message/'
 
-    let config = {
-        method: 'GET',
-        uri: host + endpoint,
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: apiToken,
-        },
-        json: true, // automatically parses the JSON string in the response
-    }
+    const request = r => r.set('Authorization', key).accept('application/json').type('application/json')
+    const service = api + '/message'
+    const messages = {}
 
-    let message = {}
 
     /**
      * Sending a SMS messages
@@ -28,12 +19,8 @@ module.exports = ({ apiToken, host }) => {
      * @param array messages
      * @return Request-Promised
      */
-    message.sendMessages = (messages) => {
-        config.method = 'POST'
-        config.uri = config.uri + 'send'
-        config.body = messages
-        return rp(config)
-    }
+    messages.sendMessages = messages => request(superagent.post(`${service}/send`)).send(messages || [])
+
 
     /**
      * Canceling a SMS messages
@@ -45,12 +32,8 @@ module.exports = ({ apiToken, host }) => {
      * @param array ids
      * @param Request-Promised
      */
-    message.cancelMessages = (ids) => {
-        config.method = 'POST'
-        config.uri = config.uri + 'cancel'
-        config.body = ids
-        return rp(config)
-    }
+    messages.cancelMessages = ids => request(superagent.post(`${service}/cancel`)).send(ids || [])
+
 
     /**
      * Getting a SMS message information
@@ -61,10 +44,8 @@ module.exports = ({ apiToken, host }) => {
      * @param integer id
      * @return Request-Promised
      */
-    message.getMessage = (id) => {
-        config.uri = config.uri + id
-        return rp(config)
-    }
+    messages.getMessage = id => request(superagent.get(`${service}/${id}`))
+
 
     /**
      *   Message Search
@@ -78,12 +59,8 @@ module.exports = ({ apiToken, host }) => {
      * @param object filters
      * @return Request-Promised
      */
-    message.searchMessages = (filters) => {
-        config.method = 'POST'
-        config.uri = config.uri + 'search'
-        config.body = filters || {}
-        return rp(config)
-    }
+    messages.searchMessages = filters => request(superagent.post(`${service}/search`)).send(filters || {})
 
-    return message
+    
+    return messages
 }
