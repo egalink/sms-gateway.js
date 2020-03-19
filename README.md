@@ -1,2 +1,2 @@
 # sms-gateway.js
-A library to interact with SMS Gateway using their API v4.0
+A Node.js library to interact with SMS Gateway using their v4.0 API.
