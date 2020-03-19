@@ -1,7 +1,8 @@
 {
-    "name": "sms-gateway.js",
+    "name": "egalink-sms-gateway.js",
+    "title": "SMS Gateway",
     "version": "1.1.05",
-    "description": "A node.js library to interact with SMS Gateway using their v4.0 API.",
+    "description": "A Node.js library to interact with SMS Gateway using their v4.0 API.",
     "author": "Jakim Hernández <egalink@gmail.com>",
     "homepage": "https://github.com/egalink/sms-gateway.js#readme",
     "license": "MIT",
