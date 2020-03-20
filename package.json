@@ -1,6 +1,6 @@
 {
     "name": "sms-gateway.js",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A Node.js library to interact with SMS Gateway using their v4.0 API.",
     "author": "Jakim Hernández <egalink@gmail.com>",
     "homepage": "https://github.com/egalink/sms-gateway.js#readme",
@@ -29,8 +29,7 @@
         "build": "rm -rf lib/* && ./node_modules/.bin/babel --presets es2015 -d lib/ src/",
         "preversion": "npm test && npm run lint",
         "version": "npm run build && git add -A -f ./lib",
-        "postversion": "git push && git push --tags",
-        "postinstall": "npm run build"
+        "postversion": "git push && git push --tags"
     },
     "dependencies": {
         "superagent": "^5.2.2"
