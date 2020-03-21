@@ -1,6 +1,6 @@
 {
     "name": "sms-gateway.js",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A Node.js library to interact with SMS Gateway using their v4.0 API.",
     "author": "Jakim Hernández <egalink@gmail.com>",
     "homepage": "https://github.com/egalink/sms-gateway.js#readme",
