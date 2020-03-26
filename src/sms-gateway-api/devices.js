@@ -1,12 +1,9 @@
 'use strict'
 
-const superagent = require('superagent')
+module.exports = httpclient => {
 
-module.exports = ({ api, key }) => {
 
-    
-    const request = r => r.accept('application/json').type('application/json').set('Authorization', key)
-    const service = api + '/device'
+    const service = '/device'
     const devices = {}
 
 
@@ -16,9 +13,9 @@ module.exports = ({ api, key }) => {
      * Getting an android device information.
      *
      * @param integer id
-     * @return Request
+     * @return Request-Promised
      */
-    devices.getDevice = id => request(superagent.get(`${service}/${id}`))
+    devices.getDevice = id => httpclient.get(`${service}/${id}`)
 
 
     /**
@@ -31,9 +28,9 @@ module.exports = ({ api, key }) => {
      * An 'and' is done for items within the same group. and an 'or' between groups.
      *
      * @param object filters
-     * @return Request
+     * @return Request-Promised
      */
-    devices.searchDevices = filters => request(superagent.post(`${service}/search`)).send(filters || {})
+    devices.searchDevices = filters => httpclient.post(`${service}/search`).send(filters || {})
 
 
     return devices

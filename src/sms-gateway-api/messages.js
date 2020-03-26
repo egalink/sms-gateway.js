@@ -1,12 +1,9 @@
 'use strict'
 
-const superagent = require('superagent')
-
-module.exports = ({ api, key }) => {
+module.exports = httpclient => {
 
 
-    const request = r => r.set('Authorization', key).accept('application/json').type('application/json')
-    const service = api + '/message'
+    const service = '/message'
     const messages = {}
 
 
@@ -19,7 +16,7 @@ module.exports = ({ api, key }) => {
      * @param array messages
      * @return Request-Promised
      */
-    messages.sendMessages = messages => request(superagent.post(`${service}/send`)).send(messages || [])
+    messages.sendMessages = messages => httpclient.post(`${service}/send`).send(messages || [])
 
 
     /**
@@ -30,9 +27,9 @@ module.exports = ({ api, key }) => {
      * our SMS Message API.
      *
      * @param array ids
-     * @param Request-Promised
+     * @return Request-Promised
      */
-    messages.cancelMessages = ids => request(superagent.post(`${service}/cancel`)).send(ids || [])
+    messages.cancelMessages = ids => httpclient.post(`${service}/cancel`).send(ids || [])
 
 
     /**
@@ -44,7 +41,7 @@ module.exports = ({ api, key }) => {
      * @param integer id
      * @return Request-Promised
      */
-    messages.getMessage = id => request(superagent.get(`${service}/${id}`))
+    messages.getMessage = id => httpclient.get(`${service}/${id}`)
 
 
     /**
@@ -59,8 +56,8 @@ module.exports = ({ api, key }) => {
      * @param object filters
      * @return Request-Promised
      */
-    messages.searchMessages = filters => request(superagent.post(`${service}/search`)).send(filters || {})
+    messages.searchMessages = filters => httpclient.post(`${service}/search`).send(filters || {})
 
-    
+
     return messages
 }
